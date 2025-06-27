@@ -20,16 +20,16 @@
 
 ---
 
-# 1. Project Setup ⏳
+# 1. Project Setup ✅
 
-1. **Initialize a Rust project with dependencies for macOS UI.** ⏳
+1. **Initialize a Rust project with dependencies for macOS UI.** ✅
    - Consider Tauri for cross-platform UI, or use the `cocoa`/`objc` crates for native macOS integration.
    - Set up a local SQLite database or file-based storage module.
-   - *Status: Not started*
+   - *Status: Completed June 27, 2025*
 
-2. **Repository standards** ⏳
+2. **Repository standards** ✅
    - Use `cargo fmt`, `cargo clippy`, and `cargo test` to maintain clean, linted code with unit tests (per guidelines in `AGENTS.md`).
-   - *Status: Guidelines established in AGENTS.md*
+   - *Status: Completed*
 
 ---
 
