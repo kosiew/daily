@@ -7,3 +7,5 @@ edition = "2024"
 tauri = { version = "1", features = ["system-tray"] }
 rusqlite = { version = "0.31", features = ["bundled"] }
 chrono = { version = "0.4", default-features = false, features = ["std"] }
+aes-gcm = "0.10"
+rand = "0.8"

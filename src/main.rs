@@ -4,6 +4,7 @@ mod export;
 mod idle;
 mod integration;
 mod scheduler;
+mod security;
 
 use crate::cli::handle_cli;
 use crate::db::init_db;
@@ -26,7 +27,10 @@ fn create_tray() -> SystemTray {
 
 fn main() -> tauri::Result<()> {
     let conn = init_db().expect("db");
-    if handle_cli(&conn, &std::env::args().collect::<Vec<_>>())? {
+    let args = std::env::args().collect::<Vec<_>>();
+    if handle_cli(&conn, &args)? {
+        drop(conn);
+        db::encrypt_db().ok();
         return Ok(());
     }
     let runner = Runner::new(Scheduler::new(Duration::from_secs(60 * 20), false), conn);
@@ -45,7 +49,9 @@ fn main() -> tauri::Result<()> {
                 }
             }
         })
-        .run(tauri::generate_context!())
+        .run(tauri::generate_context!())?;
+    db::encrypt_db().ok();
+    Ok(())
 }
 
 #[cfg(test)]
