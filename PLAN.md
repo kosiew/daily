@@ -70,20 +70,20 @@
 
 ---
 
-# 5. Productivity & Automation ⏳
+# 5. Productivity & Automation ✅
 
-1. **Inactivity Detection** ⏳
+1. **Inactivity Detection** ✅
    - Detect idle time and handle it automatically (e.g., mark as inactive or prompt the user).
-   - *Status: Pending core implementation*
+   - *Status: Completed June 27, 2025*
 
-2. **Scheduling Features** ⏳
+2. **Scheduling Features** ✅
    - Allow users to configure working hours or disable tracking outside those hours.
-   - *Status: Pending scheduler implementation*
+   - *Status: Completed June 27, 2025*
 
-3. **Integration** ⏳
+3. **Integration** ✅
    - Implement iCloud synchronization to keep timesheets consistent across devices.
    - Provide AppleScript hooks or keyboard shortcuts for quick control.
-   - *Status: Pending core features*
+   - *Status: Completed June 27, 2025*
 
 ---
 

@@ -1,6 +1,8 @@
 mod cli;
 mod db;
 mod export;
+mod idle;
+mod integration;
 mod scheduler;
 
 use crate::cli::handle_cli;
