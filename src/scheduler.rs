@@ -1,4 +1,6 @@
 use crate::db::insert_entry;
+use crate::idle::idle_time;
+use chrono::Timelike;
 use rusqlite::Connection;
 use std::io::{self, Write};
 use std::sync::atomic::{AtomicBool, Ordering};
@@ -7,14 +9,45 @@ use std::thread;
 use std::time::Duration;
 
 #[derive(Clone)]
+pub struct WorkingHours {
+    pub start: u8,
+    pub end: u8,
+}
+
+#[derive(Clone)]
 pub struct Scheduler {
     pub interval: Duration,
     pub silent: bool,
+    pub working_hours: Option<WorkingHours>,
+    pub idle_threshold: Duration,
 }
 
 impl Scheduler {
     pub fn new(interval: Duration, silent: bool) -> Self {
-        Self { interval, silent }
+        Self {
+            interval,
+            silent,
+            working_hours: None,
+            idle_threshold: Duration::from_secs(300),
+        }
+    }
+
+    pub fn set_working_hours(&mut self, start: u8, end: u8) {
+        self.working_hours = Some(WorkingHours { start, end });
+    }
+
+    fn within_hours(&self) -> bool {
+        match self.working_hours {
+            Some(WorkingHours { start, end }) => {
+                let now = chrono::Local::now().hour() as u8;
+                if start <= end {
+                    now >= start && now < end
+                } else {
+                    now >= start || now < end
+                }
+            }
+            None => true,
+        }
     }
 
     pub fn run_once(&self, conn: &Connection) -> rusqlite::Result<()> {
@@ -28,8 +61,16 @@ impl Scheduler {
 
     pub fn run(&self, conn: &Connection, running: &AtomicBool) -> rusqlite::Result<()> {
         while running.load(Ordering::SeqCst) {
+            if !self.within_hours() {
+                thread::sleep(Duration::from_secs(60));
+                continue;
+            }
             thread::sleep(self.interval);
-            self.run_once(conn)?;
+            if idle_time() >= self.idle_threshold {
+                insert_entry(conn, "Inactive")?;
+            } else {
+                self.run_once(conn)?;
+            }
         }
         Ok(())
     }

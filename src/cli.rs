@@ -1,5 +1,6 @@
 use crate::db::{print_timesheet, update_entry};
 use crate::export::{export_csv, export_json, export_pdf};
+use crate::integration::icloud_sync;
 use rusqlite::Connection;
 use std::path::Path;
 
@@ -30,6 +31,14 @@ pub fn handle_cli(conn: &Connection, args: &[String]) -> rusqlite::Result<bool> 
                     "pdf" => export_pdf(conn, path)?,
                     _ => println!("unknown format"),
                 }
+            }
+            Ok(true)
+        }
+        "sync" => {
+            let db_path = Path::new("daily.db");
+            match icloud_sync(db_path) {
+                Ok(p) => println!("Synced to {}", p.display()),
+                Err(e) => println!("Sync failed: {}", e),
             }
             Ok(true)
         }
