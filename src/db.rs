@@ -1,5 +1,8 @@
 use chrono::{TimeZone, Utc};
 use rusqlite::{Connection, Result, params};
+use std::path::Path;
+
+use crate::security::{decrypt_file, encrypt_file};
 
 #[derive(Debug, Clone)]
 pub struct Entry {
@@ -9,6 +12,9 @@ pub struct Entry {
 }
 
 pub fn init_db() -> Result<Connection> {
+    if Path::new("daily.db.enc").exists() {
+        let _ = decrypt_file(Path::new("daily.db.enc"), Path::new("daily.db"));
+    }
     let conn = Connection::open("daily.db")?;
     conn.execute(
         "CREATE TABLE IF NOT EXISTS entries (
@@ -57,6 +63,14 @@ pub fn print_timesheet(conn: &Connection) -> Result<()> {
     for e in entries {
         let ts = Utc.timestamp_opt(e.ts, 0).single().unwrap();
         println!("{:<5} {} - {}", e.id, ts, e.activity);
+    }
+    Ok(())
+}
+
+pub fn encrypt_db() -> std::io::Result<()> {
+    if Path::new("daily.db").exists() {
+        encrypt_file(Path::new("daily.db"), Path::new("daily.db.enc"))?;
+        std::fs::remove_file("daily.db")?;
     }
     Ok(())
 }

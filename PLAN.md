@@ -12,7 +12,7 @@
    - Store responses with timestamps in the local database.
    - *Status: Completed June 27, 2025*
 
-*Last Updated: June 27, 2025*
+*Last Updated: June 28, 2025*
 
 ## Progress Legend
 - ✅ **Completed** - Task finished and tested
@@ -87,16 +87,16 @@
 
 ---
 
-# 6. Privacy & Security ⏳
+# 6. Privacy & Security ✅
 
-1. **Data Handling** ⏳
+1. **Data Handling** ✅
    - Store timesheets locally and encrypt them.
    - Do not track specific applications, documents, or websites to preserve privacy.
-   - *Status: Pending data layer implementation*
+   - *Status: Completed June 28, 2025*
 
-2. **Cloud Sync** ⏳
+2. **Cloud Sync** ✅
    - Use macOS APIs for iCloud integration and ensure encrypted transfer.
-   - *Status: Pending local storage implementation*
+   - *Status: Completed June 28, 2025*
 
 ---
 
