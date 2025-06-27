@@ -99,3 +99,41 @@ pub fn export_pdf(conn: &Connection, path: &Path) -> rusqlite::Result<()> {
     writeln!(file, "%%EOF")?;
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::db::insert_entry;
+    use rusqlite::Connection;
+
+    fn setup() -> Connection {
+        let conn = Connection::open_in_memory().unwrap();
+        conn.execute(
+            "CREATE TABLE entries (id INTEGER PRIMARY KEY, activity TEXT NOT NULL, ts INTEGER NOT NULL)",
+            [],
+        )
+        .unwrap();
+        conn
+    }
+
+    #[test]
+    fn export_csv_writes_header() {
+        let conn = setup();
+        insert_entry(&conn, "Task").unwrap();
+        let path = std::env::temp_dir().join("test.csv");
+        export_csv(&conn, &path).unwrap();
+        let data = std::fs::read_to_string(path).unwrap();
+        assert!(data.starts_with("id,activity,ts\n"));
+    }
+
+    #[test]
+    fn export_json_brackets() {
+        let conn = setup();
+        insert_entry(&conn, "Task").unwrap();
+        let path = std::env::temp_dir().join("test.json");
+        export_json(&conn, &path).unwrap();
+        let data = std::fs::read_to_string(path).unwrap();
+        assert!(data.starts_with("["));
+        assert!(data.ends_with("]"));
+    }
+}

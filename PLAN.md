@@ -12,7 +12,7 @@
    - Store responses with timestamps in the local database.
    - *Status: Completed June 27, 2025*
 
-*Last Updated: June 28, 2025*
+*Last Updated: June 29, 2025*
 
 ## Progress Legend
 - ✅ **Completed** - Task finished and tested
@@ -100,16 +100,16 @@
 
 ---
 
-# 7. Testing & Quality Assurance ⏳
+# 7. Testing & Quality Assurance ✅
 
-1. **Unit and Integration Tests** ⏳
+1. **Unit and Integration Tests** ✅
    - Write tests for the scheduler, database operations, and any parsing or exporting logic.
-   - *Status: Pending code implementation*
+   - *Status: Completed June 28, 2025*
 
-2. **Build and Release** ⏳
+2. **Build and Release** ✅
    - Configure a continuous integration setup to run formatting, linting, and tests.
    - Package the app for macOS distribution.
-   - *Status: Final phase*
+   - *Status: Completed June 28, 2025*
 
 ---
 
