@@ -124,3 +124,24 @@ fn prompt_dialog() -> String {
         .expect("failed to read line");
     input.trim().to_string()
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rusqlite::Connection;
+
+    #[test]
+    fn runner_starts_and_stops() {
+        let conn = Connection::open_in_memory().unwrap();
+        conn.execute(
+            "CREATE TABLE entries (id INTEGER PRIMARY KEY, activity TEXT NOT NULL, ts INTEGER NOT NULL)",
+            [],
+        )
+        .unwrap();
+        let mut runner = Runner::new(Scheduler::new(Duration::from_millis(1), true), conn);
+        runner.start();
+        std::thread::sleep(Duration::from_millis(5));
+        runner.stop();
+        assert!(runner.handle.is_none());
+    }
+}

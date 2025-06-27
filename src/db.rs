@@ -74,3 +74,37 @@ pub fn encrypt_db() -> std::io::Result<()> {
     }
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rusqlite::Connection;
+
+    fn setup() -> Connection {
+        let conn = Connection::open_in_memory().unwrap();
+        conn.execute(
+            "CREATE TABLE entries (id INTEGER PRIMARY KEY, activity TEXT NOT NULL, ts INTEGER NOT NULL)",
+            [],
+        )
+        .unwrap();
+        conn
+    }
+
+    #[test]
+    fn insert_and_fetch() {
+        let conn = setup();
+        insert_entry(&conn, "Test").unwrap();
+        let entries = fetch_entries(&conn).unwrap();
+        assert_eq!(entries.len(), 1);
+        assert_eq!(entries[0].activity, "Test");
+    }
+
+    #[test]
+    fn update_changes_activity() {
+        let conn = setup();
+        insert_entry(&conn, "A").unwrap();
+        update_entry(&conn, 1, "B").unwrap();
+        let entries = fetch_entries(&conn).unwrap();
+        assert_eq!(entries[0].activity, "B");
+    }
+}
