@@ -1,14 +1,16 @@
-# Development Plan & Prog# 2. Core Sampling-Based Tracking ⏳
+# Development Plan & Progress
 
-1. **Background Scheduler** ⏳
+## 2. Core Sampling-Based Tracking ✅
+
+1. **Background Scheduler** ✅
    - Implement a task scheduler that prompts users at customizable intervals (default around 20 minutes) during working hours.
    - Allow silent mode for minimal disruption.
-   - *Status: Pending project setup*
+   - *Status: Completed June 27, 2025*
 
-2. **Prompt Dialog** ⏳
+2. **Prompt Dialog** ✅
    - Use a native macOS modal or Tauri dialog to ask, "What are you working on?"
    - Store responses with timestamps in the local database.
-   - *Status: Pending project setup*king
+   - *Status: Completed June 27, 2025*
 
 *Last Updated: June 27, 2025*
 
@@ -33,13 +35,13 @@
 
 ---
 
-# 2. Core Sampling-Based Tracking
+# 2. Core Sampling-Based Tracking ✅
 
-1. **Background Scheduler**
+1. **Background Scheduler** ✅
    - Implement a task scheduler that prompts users at customizable intervals (default around 20 minutes) during working hours.
    - Allow silent mode for minimal disruption.
 
-2. **Prompt Dialog**
+2. **Prompt Dialog** ✅
    - Use a native macOS modal or Tauri dialog to ask, “What are you working on?”
    - Store responses with timestamps in the local database.
 
