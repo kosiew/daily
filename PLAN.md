@@ -47,16 +47,16 @@
 
 ---
 
-# 3. User Interface ⏳
+# 3. User Interface ✅
 
-1. **Status Bar Application** ⏳
+1. **Status Bar Application** ✅
    - Create a menu-bar (status bar) icon with dropdown interface as shown in `screenshots/`.
    - Provide quick access to start/stop tracking, open timesheets, and preferences.
-   - *Status: UI references available in screenshots folder*
+   - *Status: Completed June 27, 2025*
 
-2. **Light and Dark Modes** ⏳
+2. **Light and Dark Modes** ✅
    - Support macOS appearance settings for both light and dark themes.
-   - *Status: Pending UI framework setup*
+   - *Status: Completed June 27, 2025*
 
 # 4. Timesheet Management ⏳
 
