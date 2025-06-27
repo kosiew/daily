@@ -4,7 +4,6 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-cocoa = "0.25"
-objc = "0.2"
+tauri = { version = "1", features = ["system-tray"] }
 rusqlite = { version = "0.31", features = ["bundled"] }
 chrono = { version = "0.4", default-features = false, features = ["std"] }

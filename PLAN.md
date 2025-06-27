@@ -114,9 +114,15 @@
 ---
 
 ## Next Steps
-1. **Start with Project Setup** - Initialize Cargo project with appropriate dependencies
-2. **Choose UI Framework** - Decide between Tauri or native macOS frameworks
-3. **Set up basic project structure** - Create modules for core functionality
+1. **Start with Project Setup** ✅
+   - Initialized Cargo project with SQLite and UI dependencies.
+   - *Status: Completed June 27, 2025*
+2. **Choose UI Framework** ✅
+   - Selected **Tauri** for cross-platform support.
+   - *Status: Completed June 27, 2025*
+3. **Set up basic project structure** ✅
+   - Added separate modules for database access, scheduling, and exports.
+   - *Status: Completed June 27, 2025*
 
 ---
 
