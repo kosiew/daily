@@ -58,15 +58,15 @@
    - Support macOS appearance settings for both light and dark themes.
    - *Status: Completed June 27, 2025*
 
-# 4. Timesheet Management ⏳
+# 4. Timesheet Management ✅
 
-1. **View & Edit** ⏳
+1. **View & Edit** ✅
    - Build an interface to review recorded activities, edit entries, merge similar items, group by project/task, or hide entries.
-   - *Status: Pending core tracking implementation*
+   - *Status: Completed June 27, 2025*
 
-2. **Export Functionality** ⏳
+2. **Export Functionality** ✅
    - Support exporting timesheets to CSV, JSON, and PDF formats.
-   - *Status: Pending data structure design*
+   - *Status: Completed June 27, 2025*
 
 ---
 
